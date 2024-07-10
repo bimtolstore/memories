@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #FF69B4, #FFB6C1);
+            background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,7 +19,7 @@
         .container {
             max-width: 900px;
             width: 100%;
-            background: #FFC0CB;
+            background: #FF69B4;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@
         .header .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #FF69B4;
+            color: #FFFFFF;
             text-decoration: none;
         }
         .header .menu-toggle {
@@ -49,14 +49,14 @@
             gap: 20px;
         }
         .menu-item {
-            background: #f9f9f9;
+            background: #FFF0F5;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
-            width: 200px; /* Lebar tetap */
-            height: 200px; /* Tinggi tetap */
+            width: 200px; /* Fixed width */
+            height: 200px; /* Fixed height */
             margin: 20px;
             display: flex;
             flex-direction: column;
@@ -69,7 +69,7 @@
         }
         .menu-item i {
             font-size: 48px;
-            color: #FF69B4;
+            color: #FF1493;
         }
         .menu-item h3 {
             margin: 10px 0;
@@ -85,7 +85,7 @@
             display: inline-block;
             padding: 10px 20px;
             color: #fff;
-            background: #FF69B4;
+            background: #FF1493;
             border: none;
             border-radius: 5px;
             font-size: 16px;
@@ -94,13 +94,13 @@
             transition: background 0.3s;
         }
         .menu-item .btn:hover {
-            background: #FF1493;
+            background: #C71585;
         }
         .customer-service {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #FF69B4;
+            background: #FF1493;
             color: #fff;
             width: 50px;
             height: 50px;
@@ -112,7 +112,7 @@
             cursor: pointer;
         }
         .customer-service:hover {
-            background: #FF1493;
+            background: #C71585;
         }
         /* Modal styles */
         .modal {
@@ -155,7 +155,7 @@
         .modal-content .btn {
             padding: 10px 20px;
             color: #fff;
-            background: #FF69B4;
+            background: #FF1493;
             border: none;
             border-radius: 5px;
             font-size: 16px;
@@ -164,7 +164,7 @@
             transition: background 0.3s;
         }
         .modal-content .btn:hover {
-            background: #FF1493;
+            background: #C71585;
         }
         .modal-content .btn.cancel {
             background: #f44336;
@@ -172,8 +172,10 @@
         .modal-content .btn.cancel:hover {
             background: #d32f2f;
         }
-        /* Styles for Music Modal */
-        .modal-content select {
+        /* Styles for Music, Video, and Photo Modal */
+        .modal-content select,
+        .modal-content video,
+        .modal-content img {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -283,7 +285,6 @@
         </select>
         <audio id="musicPlayer" controls>
             <source id="musicSource" src="https://example.com/0.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
         </audio>
         <div class="modal-buttons">
             <a href="#" class="btn cancel">Sembunyikan</a>
@@ -297,14 +298,12 @@
     <div class="modal-content">
         <h3>Putar Video</h3>
         <select id="videoSelect">
-            <option value="https://example.com/0.mp4">Pilih video</option>
-            <option value="1.mp4">Video 1</option>
-            <option value="2.mp4">Video 2</option>
-            <option value="3.mp4">Video 3</option>
+            <option value="video1.mp4">Video 1</option>
+            <option value="video2.mp4">Video 2</option>
+            <option value="video3.mp4">Video 3</option>
         </select>
         <video id="videoPlayer" controls>
-            <source id="videoSource" src="https://example.com/0.mp4" type="video/mp4">
-            Your browser does not support the video element.
+            <source id="videoSource" src="video1.mp4" type="video/mp4">
         </video>
         <div class="modal-buttons">
             <a href="#" class="btn cancel">Sembunyikan</a>
@@ -318,12 +317,11 @@
     <div class="modal-content">
         <h3>Putar Foto</h3>
         <select id="photoSelect">
-            <option value="https://example.com/0.jpg">Pilih foto</option>
-            <option value="1.jpg">Foto 1</option>
-            <option value="2.jpg">Foto 2</option>
-            <option value="3.jpg">Foto 3</option>
+            <option value="photo1.jpg">Foto 1</option>
+            <option value="photo2.jpg">Foto 2</option>
+            <option value="photo3.jpg">Foto 3</option>
         </select>
-        <img id="photoDisplay" src="https://example.com/0.jpg" alt="Display" style="max-width: 100%; border-radius: 10px;">
+        <img id="photoDisplay" src="photo1.jpg" alt="Foto">
         <div class="modal-buttons">
             <a href="#" class="btn cancel">Sembunyikan</a>
             <a href="https://wa.me/6289508984455" class="btn">Tambah Foto</a>
@@ -487,18 +485,18 @@
                 if (permission === 'granted') {
                     showNotification('Notifikasi diaktifkan!');
                 }
-                });
-            }
-        });
-
-        // Show Notification
-        function showNotification(message) {
-            const notification = new Notification('Pemberitahuan', {
-                body: message,
-                icon: 'path/to/notification-icon.png' // Ganti dengan path icon Anda
             });
         }
-    </script>
+    });
+
+    // Show Notification
+    function showNotification(message) {
+        const notification = new Notification('Pemberitahuan', {
+            body: message,
+            icon: 'icon.png'
+        });
+    }
+</script>
 
 </body>
 </html>
